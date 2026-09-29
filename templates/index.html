@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <main class="page-wrapper">
+        <div class="container">
+            <div id="heading">
+                <p class="eyebrow">TASK MANAGER</p>
+                <h1>Todo List</h1>
+                <p class="subtitle">Add a task and stay organized.</p>
+            </div>
+
+            <form method="post" action="{{ url_for('todo') }}">
+                <div class="form-group">
+                    <label for="name">Your name</label>
+                    <input type="text" name="name" id="name" placeholder="e.g. Ali" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="title">Task title</label>
+                    <input type="text" name="title" id="title" placeholder="e.g. Complete Flask project" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" name="description" id="description" placeholder="Add more task details" required>
+                </div>
+
+                <button type="submit">Add todo <span>→</span></button>
+            </form>
+        </div>
+
+        {% if display %}
+        <section id="display" aria-label="Your todo">
+            <div class="todo-card">
+                <div class="todo-card-top">
+                    <span class="status-dot"></span>
+                    <span class="status-text">New task</span>
+                </div>
+
+                <h2>{{ display.name }}</h2>
+                <h3>{{ display.title }}</h3>
+                <p>{{ display.description }}</p>
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+</body>
+</html>
